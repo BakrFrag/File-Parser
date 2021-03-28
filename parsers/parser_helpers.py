@@ -111,3 +111,13 @@ class FileParserHelper(object):
                 });
         
         return FileParserHelper.export_to_json(customer_json);
+
+    @staticmethod
+    def export_to_json(json_content):
+        """
+        write json content  to parsing_result/simple.json
+        """
+        json_file_path=ParserHelper.generate_file_path();
+        with open(ParserHelper.generate_file_path(),"w") as json_file:
+            json_file.write(json.dumps(json_content,indent=4));
+        return json_file_path;
