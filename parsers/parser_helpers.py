@@ -58,3 +58,25 @@ class FileParserHelper(object):
             return headers==FileParserHelper.CUSTOMER_HEADERS;
         else:
             return headers==FileParserHelper.VEHICLE_HEADERS;
+    @staticmethod
+    def extract_customer_vehicles(vehicles):
+        """
+        get vehicles related to specfic customer by joining 
+        vehicle[owner_id] and customer[id]
+        """
+        
+        def get_related_vehicles(customer_id):
+            related_vehicles=[];
+            for vehicle in vehicles:
+                if vehicle[3]==customer_id:
+                        vehicle_data={
+                        "id":vehicle[0],
+                        "make":vehicle[1],
+                        "vin_number":vehicle[2]
+                        };
+                        related_vehicles.append(vehicle_data);
+            if len(related_vehicles)==1:
+                return related_vehicles[0];
+            else:
+                return related_vehicles;
+        return get_related_vehicles;
