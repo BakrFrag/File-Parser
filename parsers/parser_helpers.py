@@ -39,4 +39,9 @@ class FileParserHelper(object):
          - extract customer data
          - extract vehicles related to specfic customer
     """
-    
+    @staticmethod
+    def check_file_exist(file_location):
+        """
+        check if parsed argument file exists or not 
+        """
+        return os.path.isfile(file_location);
