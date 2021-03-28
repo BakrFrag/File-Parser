@@ -39,9 +39,22 @@ class FileParserHelper(object):
          - extract customer data
          - extract vehicles related to specfic customer
     """
+    CUSTOMER_HEADERS=['id', 'name', 'address', 'phone', 'date'];
+    VEHICLE_HEADERS=['id', 'make', 'vin_number', 'owner_id']
     @staticmethod
     def check_file_exist(file_location):
         """
         check if parsed argument file exists or not 
         """
         return os.path.isfile(file_location);
+
+    @staticmethod
+    def check_file_headers(headers,kind="customer"):
+        """
+        check file headers in customer and vehicle
+        """
+        headers=[i.lower() for i in headers];
+        if kind=="customer":
+            return headers==FileParserHelper.CUSTOMER_HEADERS;
+        else:
+            return headers==FileParserHelper.VEHICLE_HEADERS;
