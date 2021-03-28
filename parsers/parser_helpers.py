@@ -80,3 +80,34 @@ class FileParserHelper(object):
             else:
                 return related_vehicles;
         return get_related_vehicles;
+
+    @staticmethod
+    def extract_customer_data(customers,vehicles,file_name):
+        
+        """
+        extract customer fields data
+        """
+        customer_related_vehicles=FileParserHelper.extract_customer_vehicles(vehicles);
+        customer_json={"file_name":file_name};
+        customer_json['transaction']=[];
+        for customer in customers:
+                customer_id=customer[0];
+                customer_name=customer[1];
+                customer_address=customer[2];
+                customer_phone=customer[3];
+                customer_date=customer[4];
+                customer_vehicles = customer_related_vehicles(customer_id);
+                customer_json['transaction'].append({
+                    "date":customer_date.replace("/","-"),
+                    "customer":{
+                        "id":customer_id,
+                        "name":customer_name,
+                        "address":customer_address,
+                        "phone":customer_phone
+                    },
+                    
+                        "vehicles":customer_vehicles
+                    
+                });
+        
+        return FileParserHelper.export_to_json(customer_json);
