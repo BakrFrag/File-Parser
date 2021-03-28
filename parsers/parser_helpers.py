@@ -30,4 +30,13 @@ class ParserHelper(object):
             ParserHelper.FOLDER_NAME),
             "simple.json");
     
+class FileParserHelper(object):
+    """
+    include utlity functions used by any file parser 
+    utility functions like 
+         - check file headers
+         - check file exists 
+         - extract customer data
+         - extract vehicles related to specfic customer
+    """
     
