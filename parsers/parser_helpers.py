@@ -19,4 +19,15 @@ class ParserHelper(object):
             ParserHelper.FOLDER_NAME);
         if not os.path.exists(full_path):
             os.mkdir("parsing_result");
+     @staticmethod  
+    def generate_file_path():
+        """
+        generate full path to parsing_result/simple.json to write parsing result 
+        """
+        ParserHelper.create_folder_if_not_exist();
+        return os.path.join(os.path.join(
+            ParserHelper.CURRENT_DIRECTORY,
+            ParserHelper.FOLDER_NAME),
+            "simple.json");
+    
     
