@@ -31,3 +31,11 @@ class TestCsvParser(unittest.TestCase):
         csv_parser=CsvParser(self.csv_customer_headers_miss_match,self.valid_vehicles);
         function_result=csv_parser.read_csv(self.customers_file,kind="vehicle");
         self.assertEqual(function_result['error'],"file of type customer headers don't match");
+
+    def test_csv_generate_json_content(self):
+        """
+        test CsvParser with a valid customer and vehicle file
+        """
+        csv_parser=CsvParser(self.valid_customers,self.valid_vehicles);
+        function_result=csv_parser.generate_json_content();
+        self.assertTrue(function_result.endswith("parsing_result/simple.json"));
