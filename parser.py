@@ -34,7 +34,7 @@ class ParserHandler(object):
         apply csv parser in arguments
         """
         csv_parser=CsvParser(customer_file,vehicle_file);
-        csv_customer_data==csv_parser.read_csv(csv_parser.customers_file,kind="customer");
+        csv_customer_data=csv_parser.read_csv(csv_parser.customers_file,kind="customer");
         if type(csv_customer_data) is dict:
             return csv_customer_data['error'];
         csv_parser.customers_data=csv_customer_data;
@@ -50,12 +50,12 @@ class ParserHandler(object):
         apply xlsx parser on arguments
         """
         xlsx_parser=XlsxParser(customer_file,vehicle_file);
-        xlsx_customer_data==xlsx_parser.read_xlsx(xlsx_parser.customers_file,kind="customer");
-        if type(csv_customer_data) is dict:
+        xlsx_customer_data=xlsx_parser.read_xlsx(xlsx_parser.customers_file,kind="customer");
+        if type(xlsx_customer_data) is dict:
             return xlsx_customer_data['error'];
         xlsx_parser.customers_data=xlsx_customer_data;
         xlsx_vehicle_data=xlsx_parser.read_xlsx(xlsx_parser.vehicles_file,kind="vehicle")
-        if type(csv_vehicle_data) is dict:
+        if type(xlsx_vehicle_data) is dict:
             return xlsx_vehicle_data['error'];
         xlsx_parser.vehicle_file_data=xlsx_vehicle_data;
         xlsx_parser.vehicles_data=xlsx_vehicle_data;
