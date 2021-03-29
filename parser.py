@@ -94,7 +94,7 @@ if __name__=="__main__":
       to parse xml file parser.py xml xml_file.xml
       to parse csv file parser.py csv customers.csv and vehicle.csv 
       """
-      arguments=sys.argv;
+      print(instructions);
       handler=ParserHandler(arguments);
       result=handler.handle_arguments();
       print(result);
