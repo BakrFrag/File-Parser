@@ -36,3 +36,11 @@ class TestxlsxParser(unittest.TestCase):
         xlsx_parser=xlsxParser(self.xlsx_customer_headers_miss_match,self.valid_vehicles);
         function_result=xlsx_parser.read_xlsx(self.customers_file,kind="vehicle");
         self.assertEqual(function_result['error'],"file of type customer headers don't match");
+
+    def test_xlsx_generate_json_content(self):
+        """
+        test xlsxParser with a valid customer and vehicle file
+        """
+        xlsx_parser=XlsxParser(self.valid_customers,self.valid_vehicles);
+        function_result=xlsx_parser.generate_json_content();
+        self.assertTrue(function_result.endswith("parsing_result/simple.json"));
