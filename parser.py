@@ -1,5 +1,7 @@
 #!/usr/bin/python3.8
-from parser import csv_parser,xlsx_parser,xml_parser;
+from parsers.csv_parser import CsvParser;
+from parsers.xlsx_parser import XlsxParser;
+from parsers.xml_parser import XmlParser;
 import sys;
 class ParserHandler(object):
     """
@@ -15,7 +17,7 @@ class ParserHandler(object):
         """
         self.arguments=sys.argv;
         self.length=len(self.arguments);
-        self.handle_arguments();
+        
     def xml_handler(self,format,customer_file):
         """
         apply xml parser on arguments
@@ -65,23 +67,37 @@ class ParserHandler(object):
         """
         handle arguments and apply right parser 
         """
+        print(arguments)
         if self.length < 3:
             return "too less arguments";
         elif self.length > 4:
             return "to manay arguments";
-        format=self.arguments[1];
-        customer_file=self.arguments[2]
-        elif format not in FORMAT:
-            return "not supported format"
-        elif self.length == 3 and format=="xml":
-              return self.xml_handler(format,customer_file);
-        elif self.length == 4:
-            vehicle_file=self.arguments[3];
-            if format=="csv":
-                return self.csv_handler(format,customer_file,vehicle_file);
-            elif format=="xlsx":
-                return self.xlsx_handler(format,customer_file,vehicle_file);
+        else:
+                file_format=self.arguments[1];
+                customer_file=self.arguments[2]
+                if not (file_format in  ParserHandler.FORMATS):
+                    return "not supported format"
+                elif self.length == 3 and file_format=="xml":
+                    return self.xml_handler(file_format,customer_file);
+                elif self.length == 4:
+                    vehicle_file=self.arguments[3];
+                    if file_format=="csv":
+                        return self.csv_handler(file_format,customer_file,vehicle_file);
+                    elif file_format=="xlsx":
+                        return self.xlsx_handler(file_format,customer_file,vehicle_file);
             
+if __name__=="__main__":
+      instructions="""
+      supported format are  xml , csv and xlsx
+      if error happend , the error print on console include what error are
+      customer/vehicle file ,must match specfic headers in order
+      to parse xml file parser.py xml xml_file.xml
+      to parse csv file parser.py csv customers.csv and vehicle.csv 
+      """
+      arguments=sys.argv;
+      handler=ParserHandler(arguments);
+      result=handler.handle_arguments();
+      print(result);
             
             
 

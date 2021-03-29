@@ -1,0 +1,17 @@
+{
+    "file_name": "xml/datasets/customer1.xml",
+    "transaction": {
+        "date": "2021-12-07",
+        "customer": {
+            "id": "ID1011200",
+            "name": "Shirish Suchak",
+            "address": "1429  Joyce Street",
+            "phone": "252-414-7396"
+        },
+        "vehicles": {
+            "id": "V1824",
+            "make": "Honda",
+            "vim_number": "WDBFA63E7RF125264"
+        }
+    }
+}

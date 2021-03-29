@@ -1,6 +1,6 @@
 #!/usr/bin/python3.8;
 import untangle;
-from parser_helpers import ParserHelper,FileParserHelper;
+from .parser_helpers import ParserHelper,FileParserHelper;
 class XmlParser(object):
     def __init__(self,input_file,export_format="xml"):
         self.input_file=input_file;
@@ -20,21 +20,21 @@ class XmlParser(object):
             return {"error":"invalid xml file "};
     def extract_xml_vehicles(self,units):
         vehicles_number=len(units);
-        vechiles_data=Units.Vehicle;
+        vehicles_data=units.Vehicle;
         if vehicles_number == 1:
-            vechile={};
-            vechile['id']=vechiles_data['id'];
-            vechile['make']=vechiles_data.Make.cdata;
-            vechile['vim_number']=vechiles_data.VinNumber.cdata;
+            vehicle={};
+            vehicle['id']=vehicles_data['id'];
+            vehicle['make']=vehicles_data.Make.cdata;
+            vehicle['vim_number']=vehicles_data.VinNumber.cdata;
             return vehicle;
         else:
             vehicles=[];
             for i in range(vehicles_number):
                 vehicle={};  
-                vechile['id']=vechiles_data[i]['id'];
-                vechile['make']=vechiles_data[i].Make.cdata;
-                vechile['vim_number']=vechiles_data[i].VinNumber.cdata;
-                vechiles.append(vechile)
+                vehicle['id']=vehicles_data[i]['id'];
+                vehicle['make']=vehicles_data[i].Make.cdata;
+                vehicle['vim_number']=vehicles_data[i].VinNumber.cdata;
+                vehicles.append(vehicle)
             return vehicles;
 
     
@@ -44,7 +44,7 @@ class XmlParser(object):
         """
         xml_data={};
         xml_data['file_name']="{}/{}".format(self.export_format,self.input_file);
-        xml_data['transaction']=[];
+        xml_data['transaction']={};
         date=self.file_data.Transaction.Date.cdata;
         xml_data['transaction']['date']=date;
         customer=self.file_data.Transaction.Customer;
@@ -57,7 +57,7 @@ class XmlParser(object):
         "name":customer_name,
         "address":customer_address,
         "phone":customer_phone};
-        xml_data['transaction']['vehicle']=self.extract_xml_vehicles(customer.Units)
+        xml_data['transaction']['vehicles']=self.extract_xml_vehicles(customer.Units)
         return FileParserHelper.export_to_json(xml_data)
         
     

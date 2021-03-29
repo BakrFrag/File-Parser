@@ -1,6 +1,6 @@
 #!/usr/bin/python3.8
 import xlrd;
-from helpers import ParserHelper,FileParserHelper
+from .parser_helpers import ParserHelper,FileParserHelper
 class XlsxParser(object):
     """
     init parameters used to parse xlsx file

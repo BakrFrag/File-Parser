@@ -71,7 +71,7 @@ class ParserHandler(object):
             return "to manay arguments";
         format=self.arguments[1];
         customer_file=self.arguments[2]
-        elif format not in FORMAT:
+        elif format not in ParserHandler.FORMATS:
             return "not supported format"
         elif self.length == 3 and format=="xml":
               return self.xml_handler(format,customer_file);
