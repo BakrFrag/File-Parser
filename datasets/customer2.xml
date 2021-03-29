@@ -7,7 +7,7 @@
         <Phone>818-537-1995</Phone>
         <Units>
             <Vehicle id="V1000">
-                <Make></Make>
+                <Make>Nissan</Make>
                 <VinNumber>JA32V6FV2DU023115</VinNumber>
             </Vehicle>
             <Vehicle id="V1001">
