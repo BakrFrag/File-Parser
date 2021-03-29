@@ -18,6 +18,25 @@ class XmlParser(object):
 
         except Exception as E:
             return {"error":"invalid xml file "};
+    def extract_xml_vehicles(self,units):
+        vehicles_number=len(units);
+        vechiles_data=Units.Vehicle;
+        if vehicles_number == 1:
+            vechile={};
+            vechile['id']=vechiles_data['id'];
+            vechile['make']=vechiles_data.Make.cdata;
+            vechile['vim_number']=vechiles_data.VinNumber.cdata;
+            return vehicle;
+        else:
+            vehicles=[];
+            for i in range(vehicles_number):
+                vehicle={};  
+                vechile['id']=vechiles_data[i]['id'];
+                vechile['make']=vechiles_data[i].Make.cdata;
+                vechile['vim_number']=vechiles_data[i].VinNumber.cdata;
+                vechiles.append(vechile)
+            return vehicles;
+
     
     def extract_xml_data(self):
         """
@@ -33,10 +52,12 @@ class XmlParser(object):
         customer_name=customer.Name.cdata;
         customer_address=customer.Address.cdata;
         customer_phone=customer.Phone.cdata;
-        jsonData['transaction']['customer']={
+        xml_data['transaction']['customer']={
         "id":customer_id,
         "name":customer_name,
         "address":customer_address,
         "phone":customer_phone};
+        xml_data['transaction']['vehicle']=self.extract_xml_vehicles(customer.Units)
+
         
     
