@@ -35,3 +35,12 @@ class CsvParser(object):
                         return {"error":"file {} not exists".format(input_file)}
         except Exception as E:
                 return {"error":"the file {} not valid csv file".format(input_file)};
+                
+    def generate_json_content(self):
+        """
+        transfer csv rows to list and generate json content which will be in parsing_result/simple.json
+        """
+        file_name="{}/{}".format(self.format,self.customers_file);
+        self.customers_data=[list(row.values()) for row in self.customers_data]
+        self.vehicles_data=[list(row.values()) for row in self.vehicles_data]
+        return FileParserHelper.extract_customer_data(self.customers_data,self.vehicles_data,file_name);
