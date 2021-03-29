@@ -35,3 +35,12 @@ class XlsxParser(object):
                             
         except Exception as E:
                         return {"error":"the file {} not valid xlsx file".format(input_file)};
+
+    def generate_json_content(self):
+        """
+        generate json content from parsed xlsx file 
+        result in parsing_result/simple.json
+        """
+        file_name="{}/{}".format(self.format,self.customers_file);
+        return FileParserHelper.extract_customer_data(
+            self.customers_data,self.vehicles_data,file_name);
