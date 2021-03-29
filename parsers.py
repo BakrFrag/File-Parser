@@ -43,6 +43,23 @@ class ParserHandler(object):
         csv_parser.vehicles_data=csv_vehicle_data;
         return csv_parser.generate_json_content();
 
+    def xlsx_handler(self,format,customer_file,vehicle_file):
+        """
+        apply xlsx parser on arguments
+        """
+        xlsx_parser=XlsxParser(customer_file,vehicle_file);
+        xlsx_customer_data==xlsx_parser.read_xlsx(xlsx_parser.customers_file,kind="customer");
+        if type(csv_customer_data) is dict:
+            return xlsx_customer_data['error'];
+        xlsx_parser.customers_data=xlsx_customer_data;
+        xlsx_vehicle_data=xlsx_parser.read_xlsx(xlsx_parser.vehicles_file,kind="vehicle")
+        if type(csv_vehicle_data) is dict:
+            return xlsx_vehicle_data['error'];
+        xlsx_parser.vehicle_file_data=xlsx_vehicle_data;
+        xlsx_parser.vehicles_data=xlsx_vehicle_data;
+        return xlsx_parser.generate_json_content();
+
+
 
     def handle_arguments(self):
         """
