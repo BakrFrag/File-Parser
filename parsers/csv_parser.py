@@ -18,12 +18,11 @@ class CsvParser(object):
         try:
             if FileParserHelper.check_file_exist(input_file):
                     csv_data=[];
-                    with open(input_file,"r") as csv_content:
+        
+                    with open(input_file,"r",encoding="utf-8") as csv_content:
                         rows=csv.DictReader(csv_content);
                         headers=rows.fieldnames;
-                        print(headers)
                         if FileParserHelper.check_file_headers(headers,kind):
-                                    print("headers matched")
                                     for row in rows:
                                         if row not in csv_data:
                                              
@@ -34,6 +33,7 @@ class CsvParser(object):
             else:
                         return {"error":"file {} not exists".format(input_file)}
         except Exception as E:
+                print(E.__class__.__name__)
                 return {"error":"the file {} not valid csv file".format(input_file)};
                 
     def generate_json_content(self):
