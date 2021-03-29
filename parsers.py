@@ -16,6 +16,16 @@ class ParserHandler(object):
         self.arguments=sys.argv;
         self.length=len(self.arguments);
         self.handle_arguments();
+    def xml_handler(self,format,customer_file):
+        """
+        apply xml parser on arguments
+        """
+        xml_parser=XmlParser(customer_file,format);
+        parse_xml=xml_parser.read_xml_file();
+        if type(parse_xml) is dict:
+            return parse_xml['error'];
+        else:
+           return xml_parser.extract_xml_data();
 
     def handle_arguments(self):
         """
