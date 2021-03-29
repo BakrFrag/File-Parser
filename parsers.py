@@ -26,6 +26,23 @@ class ParserHandler(object):
             return parse_xml['error'];
         else:
            return xml_parser.extract_xml_data();
+           
+    def csv_handler(self,format,customer_file,vehicle_file):
+        """
+        apply csv parser in arguments
+        """
+        csv_parser=CsvParser(customer_file,vehicle_file);
+        csv_customer_data==csv_parser.read_csv(csv_parser.customers_file,kind="customer");
+        if type(csv_customer_data) is dict:
+            return csv_customer_data['error'];
+        csv_parser.customers_data=csv_customer_data;
+        csv_vehicle_data=csv_parser.read_csv(csv_parser.vehicles_file,kind="vehicle")
+        if type(csv_vehicle_data) is dict:
+            return csv_vehicle_data['error'];
+        csv_parser.vehicle_file_data=csv_vehicle_data;
+        csv_parser.vehicles_data=csv_vehicle_data;
+        return csv_parser.generate_json_content();
+
 
     def handle_arguments(self):
         """
