@@ -1,12 +1,12 @@
 from parsers.xlsx_parser import XlsxParser;
 import unittest;
-class TestCsvParser(unittest.TestCase):
+class TestxlsxParser(unittest.TestCase):
     """
     test xlsx parser
     """
     def setUp(self):
         self.valid_customers="datasets/customers.xlsx";
-        self.csv_customer_headers_miss_match="customers_headers_error.xlsx";
+        self.xlsx_customer_headers_miss_match="customers_headers_error.xlsx";
         self.valid_vehicles="datasets/vehicles.xlsx";
         self.xlsx_vehicle_headers_miss_match="vehicles_headers_error.xlsx";
         self.xlsx_customers_not_exist="datasets/customers_not_exists.xlsx";
@@ -23,3 +23,16 @@ class TestCsvParser(unittest.TestCase):
         xlsx_parser=XlsxParser(self.xlsx_customers_not_exist,self.valid_vehicles);
         function_result=xlsx_parser.read_xlsx(self.customers_file,kind="customer");
         self.assertEqual(function_result['error'],"file {} not exists".format(self.xlsx_vehicles_not_exist));
+    
+    def test_with_headers_miss_match(self):
+        """
+        test xlsxParser with customer and vehicle file headers miss match
+        """
+        xlsx_parser=XlsxParser(self.valid_customers,self.xlsx_vehicle_headers_miss_match);
+        function_result=xlsx_parser.read_xlsx(self.vehicles_file,kind="vehicle");
+        self.assertEqual(function_result['error'],"file of type vehicle headers don't match");
+
+
+        xlsx_parser=xlsxParser(self.xlsx_customer_headers_miss_match,self.valid_vehicles);
+        function_result=xlsx_parser.read_xlsx(self.customers_file,kind="vehicle");
+        self.assertEqual(function_result['error'],"file of type customer headers don't match");
