@@ -1,4 +1,4 @@
-from parsers.xml_parser import XmlParser;
+from ..parsers.xml_parser import XmlParser
 import unittest;
 
 class TestXmlParser(unittest.TestCase):

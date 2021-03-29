@@ -67,7 +67,7 @@ class ParserHandler(object):
         """
         handle arguments and apply right parser 
         """
-        print(arguments)
+        
         if self.length < 3:
             return "too less arguments";
         elif self.length > 4:
@@ -91,10 +91,13 @@ if __name__=="__main__":
       supported format are  xml , csv and xlsx
       if error happend , the error print on console include what error are
       customer/vehicle file ,must match specfic headers in order
-      to parse xml file parser.py xml xml_file.xml
-      to parse csv file parser.py csv customers.csv and vehicle.csv 
+      to parse xml file ./parser.py xml xml_file.xml
+      to parse csv file ./parser.py csv customers.csv and vehicle.csv 
+      to pase xlsx workbook
+      ./parser.py xlsx path_to_csutomer_workbook.xlsx path_to_vehicle_workbook.xlsx
       """
       print(instructions);
+      arguments=sys.argv;
       handler=ParserHandler(arguments);
       result=handler.handle_arguments();
       print(result);
