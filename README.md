@@ -42,11 +42,12 @@ python3.8 -m unittest
 
 ## Parsing Files 
 
-script handle arguments from command line 
-in case of csv and xlsx format customers file has to be parsed first 
-files headers must match 
-if error or exception happened it will printed on terminal 
-if files parsed it will return the path to parsing output
+- script handle arguments from command line 
+- in case of csv and xlsx format customers file has to be parsed first 
+- files headers must match 
+- if error or exception happened it will printed on terminal 
+- if files parsed it will return the path to parsing output
+- in case of csv format or xlsx format vehicles related to customer extracted by joining vehicle.owner_by == customer.id
 
 1. to parse xml file 
 ```
@@ -62,8 +63,9 @@ if files parsed it will return the path to parsing output
 ```
 ## File Structure
 1. Parsers Directory include include parser classes used to parse different file formats like xslsx csv and xml 
-2. tests directory include unittests for parser classess 
-3. parser.py handle script arguments and apply right parser on them 
+parser_helper include utlity functions used by any parser 
+3. tests directory include unittests for parser classess 
+4. parser.py handle script arguments and apply right parser on them 
 
 ## Deveopment
 - this script is developed in enviroment with Ubuntu 20.04 relase
