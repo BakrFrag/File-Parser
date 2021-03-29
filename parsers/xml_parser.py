@@ -58,6 +58,6 @@ class XmlParser(object):
         "address":customer_address,
         "phone":customer_phone};
         xml_data['transaction']['vehicle']=self.extract_xml_vehicles(customer.Units)
-
+        return FileParserHelper.export_to_json(xml_data)
         
     
