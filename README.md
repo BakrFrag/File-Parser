@@ -1,5 +1,5 @@
 # File-Parser
-parse file with different formats and export data in json format 
+parse files with different formats and export data in json format 
 ## Output
 - parsed files data export in json format and located on current_working_directory/parsing_result/simple.json 
 - if folder parsing_result not found it will be created 
@@ -64,7 +64,7 @@ python3.8 -m unittest
 ./parser.py xlsx customers_file.xlsx vehicles_file.xlsx
 ```
 ## File Structure
-1. parsers Directory include include parser classes used to parse different file formats like xslsx csv and xml 
+1. parsers directory include parser classes used to parse different file formats like xslsx csv and xml 
 parser_helper include utlity functions used by any parser 
 3. tests directory include unittests for parser classess 
 4. parser.py handle script arguments and apply right parser on them 
